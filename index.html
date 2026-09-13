@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🎮 ĐẠI CA BẢNG CỬU CHƯƠNG</title>
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:"Segoe UI",Arial,sans-serif;
+    min-height:100vh;
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:#263238;
+}
+
+.container{
+    width:95%;
+    max-width:850px;
+    margin:15px auto;
+    background:white;
+    border-radius:30px;
+    padding:22px;
+    box-shadow:0 15px 45px rgba(0,0,0,.3);
+}
+
+/* ===== TIÊU ĐỀ ===== */
+
+.header{
+    text-align:center;
+}
+
+.logo{
+    font-size:58px;
+    animation:bounce 1.8s infinite;
+}
+
+h1{
+    margin:0;
+    color:#6a1b9a;
+    font-size:34px;
+}
+
+.subtitle{
+    margin:6px 0 15px;
+    font-size:18px;
+    font-weight:bold;
+    color:#546e7a;
+}
+
+/* ===== MÀN HÌNH CHỌN ===== */
+
+#startScreen{
+    text-align:center;
+}
+
+.instruction{
+    background:#f3e5f5;
+    border-radius:18px;
+    padding:15px;
+    line-height:1.6;
+    margin:15px 0;
+}
+
+.table-title{
+    font-size:21px;
+    font-weight:bold;
+    margin:15px 0 10px;
+    color:#4a148c;
+}
+
+.table-buttons{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+}
+
+.table-btn{
+    border:none;
+    border-radius:15px;
+    padding:15px 5px;
+    background:linear-gradient(135deg,#ab47bc,#7b1fa2);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 4px 8px rgba(0,0,0,.15);
+    transition:.2s;
+}
+
+.table-btn:hover{
+    transform:translateY(-3px) scale(1.03);
+}
+
+.all-btn{
+    grid-column:span 4;
+    background:linear-gradient(135deg,#ff9800,#ef6c00);
+}
+
+/* ===== HƯỚNG DẪN ===== */
+
+.rules{
+    margin-top:20px;
+    text-align:left;
+    background:#fff8e1;
+    border:2px dashed #ffb300;
+    border-radius:18px;
+    padding:15px;
+    line-height:1.7;
+}
+
+/* ===== GAME ===== */
+
+#gameScreen{
+    display:none;
+}
+
+.game-info{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.info-box{
+    background:#f3e5f5;
+    border-radius:14px;
+    padding:9px 4px;
+    text-align:center;
+    font-weight:bold;
+    color:#6a1b9a;
+}
+
+.progress-bg{
+    height:14px;
+    background:#e0e0e0;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:20px;
+}
+
+.progress{
+    height:100%;
+    width:100%;
+    background:linear-gradient(90deg,#00c853,#64dd17);
+    transition:.2s;
+}
+
+/* ===== CÂU HỎI ===== */
+
+.question-card{
+    text-align:center;
+    background:linear-gradient(135deg,#e8eaf6,#ede7f6);
+    border-radius:25px;
+    padding:25px 15px;
+    margin-bottom:18px;
+}
+
+.question-label{
+    font-size:18px;
+    color:#5e35b1;
+    font-weight:bold;
+}
+
+.question{
+    font-size:42px;
+    font-weight:bold;
+    color:#311b92;
+    margin:15px 0;
+}
+
+/* ===== Ô TRẢ LỜI ===== */
+
+.answer-area{
+    display:flex;
+    gap:10px;
+}
+
+#answer{
+    flex:1;
+    border:3px solid #ce93d8;
+    border-radius:15px;
+    padding:15px;
+    font-size:27px;
+    text-align:center;
+    outline:none;
+}
+
+#answer:focus{
+    border-color:#7b1fa2;
+    box-shadow:0 0 8px rgba(123,31,162,.3);
+}
+
+.submit-btn{
+    width:150px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#43a047,#2e7d32);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.message{
+    min-height:48px;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    margin:12px 0;
+}
+
+.correct{
+    color:#2e7d32;
+}
+
+.wrong{
+    color:#c62828;
+}
+
+/* ===== NÚT BỎ QUA ===== */
+
+.skip-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:14px;
+    background:#eceff1;
+    color:#455a64;
+    font-size:17px;
+    cursor:pointer;
+}
+
+/* ===== KẾT QUẢ ===== */
+
+#resultScreen{
+    display:none;
+    text-align:center;
+}
+
+.result-title{
+    font-size:32px;
+    color:#6a1b9a;
+    font-weight:bold;
+}
+
+.score-circle{
+    width:190px;
+    height:190px;
+    margin:20px auto;
+    border-radius:50%;
+    background:linear-gradient(135deg,#ffca28,#ff8f00);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    color:white;
+    box-shadow:0 0 30px rgba(255,152,0,.55);
+    animation:zoom .7s;
+}
+
+.score{
+    font-size:48px;
+    font-weight:bold;
+}
+
+.score-label{
+    font-size:18px;
+}
+
+.result-stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin:15px 0;
+}
+
+.stat{
+    padding:13px 5px;
+    background:#f5f5f5;
+    border-radius:15px;
+    font-weight:bold;
+}
+
+.rank{
+    font-size:29px;
+    color:#e65100;
+    font-weight:bold;
+    margin:15px 0;
+}
+
+.stars{
+    font-size:38px;
+    letter-spacing:4px;
+}
+
+.comment{
+    margin:15px 0;
+    padding:15px;
+    background:#e8f5e9;
+    border-radius:17px;
+    font-size:18px;
+    line-height:1.5;
+}
+
+.play-again{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,#ff9800,#f57c00);
+    color:white;
+    font-size:20px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* ===== PHÁO HOA ===== */
+
+#confetti{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:999;
+}
+
+.confetti{
+    position:absolute;
+    top:-20px;
+    width:10px;
+    height:16px;
+    animation:fall 4s linear forwards;
+}
+
+/* ===== ANIMATION ===== */
+
+@keyframes bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+@keyframes zoom{
+    from{
+        transform:scale(.3);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(0) rotate(0);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+@keyframes shake{
+    0%,100%{transform:translateX(0);}
+    25%{transform:translateX(-8px);}
+    50%{transform:translateX(8px);}
+    75%{transform:translateX(-5px);}
+}
+
+/* ===== ĐIỆN THOẠI ===== */
+
+@media(max-width:600px){
+
+    .container{
+        padding:15px;
+        margin:8px auto;
+    }
+
+    h1{
+        font-size:27px;
+    }
+
+    .logo{
+        font-size:48px;
+    }
+
+    .table-buttons{
+        grid-template-columns:repeat(3,1fr);
+    }
+
+    .all-btn{
+        grid-column:span 3;
+    }
+
+    .game-info{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .question{
+        font-size:36px;
+    }
+
+    .answer-area{
+        flex-direction:column;
+    }
+
+    .submit-btn{
+        width:100%;
+        padding:14px;
+    }
+
+    #answer{
+        width:100%;
+    }
+
+    .result-stats{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div id="confetti"></div>
+
+<div class="container">
+
+<!-- =============================
+     MÀN HÌNH BẮT ĐẦU
+============================= -->
+
+<div id="startScreen">
+
+    <div class="header">
+
+        <div class="logo">🧠⚡</div>
+
+        <h1>ĐẠI CA BẢNG CỬU CHƯƠNG</h1>
+
+        <div class="subtitle">
+            🎮 Luyện nhanh – Nhớ lâu – Tính thật nhanh!
+        </div>
+
+    </div>
+
+
+    <div class="instruction">
+
+        🎯 <b>Nhiệm vụ của em:</b>
+
+        Trả lời thật nhanh các phép nhân trong bảng cửu chương.
+
+        <br><br>
+
+        ❤️ Em có <b>3 mạng</b>.
+
+        <br>
+
+        ⚡ Trả lời đúng liên tiếp sẽ được tăng <b>COMBO</b>.
+
+        <br>
+
+        🏆 Cuối lượt chơi sẽ nhận danh hiệu dựa trên kết quả.
+
+    </div>
+
+
+    <div class="table-title">
+        📚 Chọn bảng cửu chương muốn luyện
+    </div>
+
+
+    <div class="table-buttons">
+
+        <button class="table-btn" onclick="startGame(2)">
+            × 2
+        </button>
+
+        <button class="table-btn" onclick="startGame(3)">
+            × 3
+        </button>
+
+        <button class="table-btn" onclick="startGame(4)">
+            × 4
+        </button>
+
+        <button class="table-btn" onclick="startGame(5)">
+            × 5
+        </button>
+
+        <button class="table-btn" onclick="startGame(6)">
+            × 6
+        </button>
+
+        <button class="table-btn" onclick="startGame(7)">
+            × 7
+        </button>
+
+        <button class="table-btn" onclick="startGame(8)">
+            × 8
+        </button>
+
+        <button class="table-btn" onclick="startGame(9)">
+            × 9
+        </button>
+
+        <button class="table-btn all-btn" onclick="startGame('all')">
+            🔥 THỬ THÁCH TẤT CẢ BẢNG 2 → 9
+        </button>
+
+    </div>
+
+
+    <div class="rules">
+
+        📝 <b>Cách chơi:</b>
+
+        <br>
+
+        1️⃣ Chọn bảng cửu chương cần luyện.
+
+        <br>
+
+        2️⃣ Nhìn phép tính và nhập đáp án.
+
+        <br>
+
+        3️⃣ Mỗi câu đúng được cộng điểm.
+
+        <br>
+
+        4️⃣ Trả lời đúng liên tiếp sẽ tạo <b>Combo 🔥</b>.
+
+        <br>
+
+        5️⃣ Sai quá 3 lần sẽ kết thúc lượt chơi.
+
+        <br>
+
+        💡 <b>Mẹo:</b> Đừng chỉ nhớ kết quả – hãy đọc thành tiếng phép tính!
+
+    </div>
+
+</div>
+
+
+<!-- =============================
+     MÀN HÌNH CHƠI
+============================= -->
+
+<div id="gameScreen">
+
+    <div class="header">
+
+        <div class="logo">🧠⚡</div>
+
+        <h1>ĐẠI CA BẢNG CỬU CHƯƠNG</h1>
+
+    </div>
+
+
+    <div class="game-info">
+
+        <div class="info-box">
+            🎯 Câu<br>
+            <span id="questionCount">1</span>
+        </div>
+
+        <div class="info-box">
+            ⭐ Điểm<br>
+            <span id="gameScore">0</span>
+        </div>
+
+        <div class="info-box">
+            🔥 Combo<br>
+            <span id="combo">0</span>
+        </div>
+
+        <div class="info-box">
+            ❤️ Mạng<br>
+            <span id="lives">❤️❤️❤️</span>
+        </div>
+
+    </div>
+
+
+    <div class="progress-bg">
+
+        <div class="progress" id="timeBar"></div>
+
+    </div>
+
+
+    <div class="question-card">
+
+        <div class="question-label">
+            ⚡ Tính thật nhanh:
+        </div>
+
+        <div class="question" id="question">
+            6 × 7 = ?
+        </div>
+
+    </div>
+
+
+    <div class="answer-area">
+
+        <input
+            type="number"
+            id="answer"
+            placeholder="Nhập đáp án..."
+            autocomplete="off">
+
+        <button
+            class="submit-btn"
+            onclick="submitAnswer()">
+
+            ✓ TRẢ LỜI
+
+        </button>
+
+    </div>
+
+
+    <div class="message" id="message">
+    </div>
+
+
+    <button
+        class="skip-btn"
+        onclick="skipQuestion()">
+
+        ⏭️ Bỏ qua câu này
+
+    </button>
+
+</div>
+
+
+<!-- =============================
+     MÀN HÌNH KẾT QUẢ
+============================= -->
+
+<div id="resultScreen">
+
+    <div class="result-title">
+        🎉 HOÀN THÀNH!
+    </div>
+
+
+    <div class="score-circle">
+
+        <div class="score" id="finalScore">
+            0
+        </div>
+
+        <div class="score-label">
+            điểm
+        </div>
+
+    </div>
+
+
+    <div class="rank" id="rank">
+    </div>
+
+
+    <div class="stars" id="stars">
+    </div>
+
+
+    <div class="result-stats">
+
+        <div class="stat">
+            🎯 Đúng<br>
+            <span id="correctCount">0</span>
+        </div>
+
+        <div class="stat">
+            ❌ Sai<br>
+            <span id="wrongCount">0</span>
+        </div>
+
+        <div class="stat">
+            🔥 Combo cao nhất<br>
+            <span id="bestCombo">0</span>
+        </div>
+
+    </div>
+
+
+    <div class="comment" id="comment">
+    </div>
+
+
+    <button
+        class="play-again"
+        onclick="restartGame()">
+
+        🔄 CHƠI LẠI
+
+    </button>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   BIẾN TRÒ CHƠI
+========================================== */
+
+let selectedTable = 2;
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let correct = 0;
+
+let wrong = 0;
+
+let combo = 0;
+
+let bestCombo = 0;
+
+let lives = 3;
+
+let currentAnswer = 0;
+
+let timer = null;
+
+let timeLeft = 10;
+
+let questionList = [];
+
+
+/* ==========================================
+   TẠO DANH SÁCH CÂU HỎI
+========================================== */
+
+function createQuestions(){
+
+    questionList = [];
+
+    let tables = [];
+
+    if(selectedTable === "all"){
+
+        for(let i = 2; i <= 9; i++){
+
+            tables.push(i);
+
+        }
+
+    }else{
+
+        tables.push(selectedTable);
+
+    }
+
+
+    /*
+       Mỗi bảng tạo các phép nhân
+       từ ×1 đến ×10
+    */
+
+    tables.forEach(function(table){
+
+        for(let i = 1; i <= 10; i++){
+
+            questionList.push({
+
+                a:table,
+
+                b:i,
+
+                answer:table * i
+
+            });
+
+        }
+
+    });
+
+
+    /*
+       Trộn câu hỏi
+    */
+
+    questionList.sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+/* ==========================================
+   BẮT ĐẦU GAME
+========================================== */
+
+function startGame(table){
+
+    selectedTable = table;
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    correct = 0;
+
+    wrong = 0;
+
+    combo = 0;
+
+    bestCombo = 0;
+
+    lives = 3;
+
+
+    createQuestions();
+
+
+    document.getElementById("startScreen").style.display =
+        "none";
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("gameScreen").style.display =
+        "block";
+
+
+    updateInfo();
+
+    showQuestion();
+
+}
+
+
+/* ==========================================
+   HIỂN THỊ CÂU HỎI
+========================================== */
+
+function showQuestion(){
+
+    if(currentQuestion >= questionList.length){
+
+        finishGame();
+
+        return;
+
+    }
+
+
+    const q =
+        questionList[currentQuestion];
+
+
+    currentAnswer =
+        q.answer;
+
+
+    document.getElementById("question").innerHTML =
+        q.a + " × " + q.b + " = ?";
+
+
+    document.getElementById("questionCount").innerHTML =
+        (currentQuestion + 1) +
+        "/" +
+        questionList.length;
+
+
+    document.getElementById("message").innerHTML =
+        "";
+
+
+    const input =
+        document.getElementById("answer");
+
+
+    input.value = "";
+
+    input.focus();
+
+
+    startTimer();
+
+}
+
+
+/* ==========================================
+   ĐẾM NGƯỢC
+========================================== */
+
+function startTimer(){
+
+    clearInterval(timer);
+
+    timeLeft = 10;
+
+
+    updateTimeBar();
+
+
+    timer = setInterval(function(){
+
+        timeLeft--;
+
+        updateTimeBar();
+
+
+        if(timeLeft <= 0){
+
+            clearInterval(timer);
+
+            timeOut();
+
+        }
+
+    },1000);
+
+}
+
+
+/* ==========================================
+   THANH THỜI GIAN
+========================================== */
+
+function updateTimeBar(){
+
+    const bar =
+        document.getElementById("timeBar");
+
+
+    bar.style.width =
+        (timeLeft / 10 * 100) + "%";
+
+
+    if(timeLeft <= 3){
+
+        bar.style.background =
+            "#e53935";
+
+    }else{
+
+        bar.style.background =
+            "linear-gradient(90deg,#00c853,#64dd17)";
+
+    }
+
+}
+
+
+/* ==========================================
+   TRẢ LỜI
+========================================== */
+
+function submitAnswer(){
+
+    clearInterval(timer);
+
+
+    const input =
+        document.getElementById("answer");
+
+
+    const value =
+        Number(input.value);
+
+
+    if(input.value === ""){
+
+        document.getElementById("message").innerHTML =
+            "⚠️ Em hãy nhập đáp án nhé!";
+
+        document.getElementById("message").className =
+            "message wrong";
+
+        startTimer();
+
+        return;
+
+    }
+
+
+    if(value === currentAnswer){
+
+        correct++;
+
+        combo++;
+
+        if(combo > bestCombo){
+
+            bestCombo = combo;
+
+        }
+
+
+        /*
+           Điểm cơ bản 10
+           + điểm thời gian
+           + thưởng combo
+        */
+
+        let earned =
+            10 +
+            timeLeft +
+            combo;
+
+
+        score += earned;
+
+
+        document.getElementById("message").innerHTML =
+            "🎉 CHÍNH XÁC! +" +
+            earned +
+            " điểm 🔥";
+
+
+        document.getElementById("message").className =
+            "message correct";
+
+
+        createConfetti(20);
+
+
+        setTimeout(nextQuestion,900);
+
+
+    }else{
+
+        wrong++;
+
+        lives--;
+
+        combo = 0;
+
+
+        document.getElementById("message").innerHTML =
+            "❌ Chưa đúng! Đáp án là " +
+            currentAnswer;
+
+
+        document.getElementById("message").className =
+            "message wrong";
+
+
+        document.getElementById("gameScreen").style.animation =
+            "shake .4s";
+
+
+        updateInfo();
+
+
+        if(lives <= 0){
+
+            setTimeout(finishGame,1000);
+
+        }else{
+
+            setTimeout(nextQuestion,1400);
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================
+   HẾT THỜI GIAN
+========================================== */
+
+function timeOut(){
+
+    wrong++;
+
+    lives--;
+
+    combo = 0;
+
+
+    document.getElementById("message").innerHTML =
+        "⏰ HẾT GIỜ! Đáp án là " +
+        currentAnswer;
+
+
+    document.getElementById("message").className =
+        "message wrong";
+
+
+    updateInfo();
+
+
+    if(lives <= 0){
+
+        setTimeout(finishGame,1000);
+
+    }else{
+
+        setTimeout(nextQuestion,1400);
+
+    }
+
+}
+
+
+/* ==========================================
+   BỎ QUA
+========================================== */
+
+function skipQuestion(){
+
+    clearInterval(timer);
+
+
+    wrong++;
+
+    lives--;
+
+    combo = 0;
+
+
+    document.getElementById("message").innerHTML =
+        "⏭️ Bỏ qua! Đáp án là " +
+        currentAnswer;
+
+
+    document.getElementById("message").className =
+        "message wrong";
+
+
+    updateInfo();
+
+
+    if(lives <= 0){
+
+        setTimeout(finishGame,1000);
+
+    }else{
+
+        setTimeout(nextQuestion,1200);
+
+    }
+
+}
+
+
+/* ==========================================
+   CÂU TIẾP THEO
+========================================== */
+
+function nextQuestion(){
+
+    currentQuestion++;
+
+    updateInfo();
+
+    showQuestion();
+
+}
+
+
+/* ==========================================
+   CẬP NHẬT THÔNG TIN
+========================================== */
+
+function updateInfo(){
+
+    document.getElementById("gameScore").innerHTML =
+        score;
+
+
+    document.getElementById("combo").innerHTML =
+        combo;
+
+
+    let hearts = "";
+
+    for(let i = 0; i < 3; i++){
+
+        if(i < lives){
+
+            hearts += "❤️";
+
+        }else{
+
+            hearts += "🖤";
+
+        }
+
+    }
+
+
+    document.getElementById("lives").innerHTML =
+        hearts;
+
+}
+
+
+/* ==========================================
+   KẾT THÚC
+========================================== */
+
+function finishGame(){
+
+    clearInterval(timer);
+
+
+    document.getElementById("gameScreen").style.display =
+        "none";
+
+
+    document.getElementById("resultScreen").style.display =
+        "block";
+
+
+    /*
+       Tính điểm theo số câu đúng.
+       Tối đa 10 điểm.
+    */
+
+    let finalScore = 0;
+
+
+    if(correct + wrong > 0){
+
+        finalScore =
+            (correct / (correct + wrong) * 10);
+
+    }
+
+
+    finalScore =
+        finalScore.toFixed(1);
+
+
+    document.getElementById("finalScore").innerHTML =
+        finalScore;
+
+
+    document.getElementById("correctCount").innerHTML =
+        correct;
+
+
+    document.getElementById("wrongCount").innerHTML =
+        wrong;
+
+
+    document.getElementById("bestCombo").innerHTML =
+        bestCombo;
+
+
+    let rank = "";
+
+    let stars = "";
+
+    let comment = "";
+
+
+    if(finalScore >= 9){
+
+        rank =
+            "👑 SIÊU CAO THỦ";
+
+        stars =
+            "⭐⭐⭐⭐⭐";
+
+        comment =
+            "Quá xuất sắc! Bảng cửu chương gần như nằm gọn trong đầu em rồi!";
+
+        createConfetti(180);
+
+    }
+
+    else if(finalScore >= 8){
+
+        rank =
+            "🥇 CAO THỦ";
+
+        stars =
+            "⭐⭐⭐⭐";
+
+        comment =
+            "Rất giỏi! Em đã tính khá nhanh và chính xác. Hãy tiếp tục luyện để đạt 10 điểm!";
+
+        createConfetti(120);
+
+    }
+
+    else if(finalScore >= 6.5){
+
+        rank =
+            "🥈 CHIẾN BINH GIỎI";
+
+        stars =
+            "⭐⭐⭐";
+
+        comment =
+            "Khá tốt! Em đã nắm được nhiều phép nhân. Luyện thêm một chút nữa nhé!";
+
+        createConfetti(70);
+
+    }
+
+    else if(finalScore >= 5){
+
+        rank =
+            "🥉 CHIẾN BINH TẬP SỰ";
+
+        stars =
+            "⭐⭐";
+
+        comment =
+            "Em đã hoàn thành thử thách. Hãy luyện lại những phép tính còn nhầm nhé!";
+
+    }
+
+    else{
+
+        rank =
+            "🌱 TÂN BINH";
+
+        stars =
+            "⭐";
+
+        comment =
+            "Không sao! Hãy luyện từng bảng một, đọc phép nhân thành tiếng và thử lại nhé!";
+
+    }
+
+
+    document.getElementById("rank").innerHTML =
+        rank;
+
+
+    document.getElementById("stars").innerHTML =
+        stars;
+
+
+    document.getElementById("comment").innerHTML =
+        comment;
+
+}
+
+
+/* ==========================================
+   CHƠI LẠI
+========================================== */
+
+function restartGame(){
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+
+    document.getElementById("startScreen").style.display =
+        "block";
+
+}
+
+
+/* ==========================================
+   PHÁO HOA
+========================================== */
+
+function createConfetti(number){
+
+    const container =
+        document.getElementById("confetti");
+
+
+    for(let i = 0; i < number; i++){
+
+        const piece =
+            document.createElement("div");
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.backgroundColor =
+            "hsl(" +
+            Math.random() * 360 +
+            ",90%,55%)";
+
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 3) + "s";
+
+
+        piece.style.animationDelay =
+            Math.random() * .5 + "s";
+
+
+        container.appendChild(piece);
+
+
+        setTimeout(function(){
+
+            piece.remove();
+
+        },5000);
+
+    }
+
+}
+
+
+/* ==========================================
+   NHẤN ENTER ĐỂ TRẢ LỜI
+========================================== */
+
+document.getElementById("answer")
+.addEventListener("keydown",function(event){
+
+    if(event.key === "Enter"){
+
+        submitAnswer();
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
