@@ -4,9 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>🎮 ĐẠI CA BẢNG CỬU CHƯƠNG</title>
+<title>🕵️ Thám tử danh từ - Lớp 4</title>
 
 <style>
+
+/* =========================
+   GIAO DIỆN CHUNG
+========================= */
+
 *{
     box-sizing:border-box;
 }
@@ -15,129 +20,85 @@ body{
     margin:0;
     font-family:"Segoe UI",Arial,sans-serif;
     min-height:100vh;
-    background:linear-gradient(135deg,#667eea,#764ba2);
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
     color:#263238;
 }
 
 .container{
     width:95%;
     max-width:850px;
-    margin:15px auto;
+    margin:20px auto;
     background:white;
-    border-radius:30px;
-    padding:22px;
-    box-shadow:0 15px 45px rgba(0,0,0,.3);
+    border-radius:28px;
+    padding:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.25);
 }
 
-/* ===== TIÊU ĐỀ ===== */
+/* =========================
+   TIÊU ĐỀ
+========================= */
 
 .header{
     text-align:center;
 }
 
 .logo{
-    font-size:58px;
-    animation:bounce 1.8s infinite;
+    font-size:60px;
+    animation:bounce 2s infinite;
 }
 
 h1{
     margin:0;
-    color:#6a1b9a;
     font-size:34px;
+    color:#e65100;
+    text-shadow:2px 2px 0 #ffe0b2;
 }
 
 .subtitle{
-    margin:6px 0 15px;
+    margin:8px 0 15px;
     font-size:18px;
     font-weight:bold;
-    color:#546e7a;
+    color:#455a64;
 }
 
-/* ===== MÀN HÌNH CHỌN ===== */
-
-#startScreen{
-    text-align:center;
-}
-
-.instruction{
-    background:#f3e5f5;
-    border-radius:18px;
-    padding:15px;
-    line-height:1.6;
-    margin:15px 0;
-}
-
-.table-title{
-    font-size:21px;
-    font-weight:bold;
-    margin:15px 0 10px;
-    color:#4a148c;
-}
-
-.table-buttons{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
-}
-
-.table-btn{
-    border:none;
-    border-radius:15px;
-    padding:15px 5px;
-    background:linear-gradient(135deg,#ab47bc,#7b1fa2);
-    color:white;
-    font-size:20px;
-    font-weight:bold;
-    cursor:pointer;
-    box-shadow:0 4px 8px rgba(0,0,0,.15);
-    transition:.2s;
-}
-
-.table-btn:hover{
-    transform:translateY(-3px) scale(1.03);
-}
-
-.all-btn{
-    grid-column:span 4;
-    background:linear-gradient(135deg,#ff9800,#ef6c00);
-}
-
-/* ===== HƯỚNG DẪN ===== */
-
-.rules{
-    margin-top:20px;
-    text-align:left;
+.remember{
     background:#fff8e1;
     border:2px dashed #ffb300;
     border-radius:18px;
-    padding:15px;
-    line-height:1.7;
+    padding:13px;
+    margin:15px 0;
+    font-size:17px;
+    line-height:1.5;
 }
 
-/* ===== GAME ===== */
+/* =========================
+   THÔNG TIN TRÒ CHƠI
+========================= */
 
-#gameScreen{
-    display:none;
-}
-
-.game-info{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:8px;
-    margin-bottom:15px;
+.info{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin:15px 0;
 }
 
 .info-box{
-    background:#f3e5f5;
-    border-radius:14px;
-    padding:9px 4px;
+    flex:1;
+    background:#e3f2fd;
+    border-radius:15px;
+    padding:10px;
     text-align:center;
     font-weight:bold;
-    color:#6a1b9a;
+    color:#1565c0;
 }
 
+/* =========================
+   THANH TIẾN TRÌNH
+========================= */
+
 .progress-bg{
-    height:14px;
+    width:100%;
+    height:18px;
     background:#e0e0e0;
     border-radius:20px;
     overflow:hidden;
@@ -146,107 +107,125 @@ h1{
 
 .progress{
     height:100%;
-    width:100%;
+    width:0%;
     background:linear-gradient(90deg,#00c853,#64dd17);
-    transition:.2s;
+    transition:0.5s;
 }
 
-/* ===== CÂU HỎI ===== */
+/* =========================
+   CÂU HỎI
+========================= */
 
-.question-card{
-    text-align:center;
-    background:linear-gradient(135deg,#e8eaf6,#ede7f6);
-    border-radius:25px;
-    padding:25px 15px;
-    margin-bottom:18px;
-}
-
-.question-label{
-    font-size:18px;
-    color:#5e35b1;
-    font-weight:bold;
+.question-box{
+    background:linear-gradient(135deg,#e8f5e9,#f1f8e9);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:15px;
+    border-left:7px solid #43a047;
 }
 
 .question{
-    font-size:42px;
+    font-size:23px;
     font-weight:bold;
-    color:#311b92;
-    margin:15px 0;
+    line-height:1.5;
+    color:#1b5e20;
 }
 
-/* ===== Ô TRẢ LỜI ===== */
+/* =========================
+   ĐÁP ÁN
+========================= */
 
-.answer-area{
-    display:flex;
-    gap:10px;
-}
-
-#answer{
-    flex:1;
-    border:3px solid #ce93d8;
-    border-radius:15px;
+.option{
+    background:#f5f9ff;
+    border:3px solid #e3f2fd;
+    border-radius:17px;
     padding:15px;
-    font-size:27px;
-    text-align:center;
-    outline:none;
-}
-
-#answer:focus{
-    border-color:#7b1fa2;
-    box-shadow:0 0 8px rgba(123,31,162,.3);
-}
-
-.submit-btn{
-    width:150px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(135deg,#43a047,#2e7d32);
-    color:white;
-    font-size:20px;
-    font-weight:bold;
+    margin:12px 0;
+    font-size:18px;
     cursor:pointer;
+    transition:0.25s;
 }
+
+.option:hover{
+    background:#e1f5fe;
+    border-color:#29b6f6;
+    transform:translateX(5px);
+}
+
+.option.correct{
+    background:#c8e6c9 !important;
+    border-color:#2e7d32 !important;
+    color:#1b5e20;
+    font-weight:bold;
+    animation:correctPop 0.5s;
+}
+
+.option.wrong{
+    background:#ffcdd2 !important;
+    border-color:#c62828 !important;
+    color:#b71c1c;
+    animation:shake 0.4s;
+}
+
+/* =========================
+   THÔNG BÁO
+========================= */
 
 .message{
-    min-height:48px;
+    min-height:45px;
     text-align:center;
     font-size:22px;
     font-weight:bold;
-    margin:12px 0;
+    margin:10px 0;
 }
 
-.correct{
+.message.correct-message{
     color:#2e7d32;
 }
 
-.wrong{
+.message.wrong-message{
     color:#c62828;
 }
 
-/* ===== NÚT BỎ QUA ===== */
+/* =========================
+   NÚT
+========================= */
 
-.skip-btn{
+.btn{
     width:100%;
-    padding:12px;
     border:none;
-    border-radius:14px;
-    background:#eceff1;
-    color:#455a64;
-    font-size:17px;
+    border-radius:17px;
+    padding:15px;
+    font-size:20px;
+    font-weight:bold;
     cursor:pointer;
+    color:white;
+    background:linear-gradient(135deg,#ff9800,#f57c00);
+    box-shadow:0 5px 12px rgba(0,0,0,0.18);
+    transition:0.2s;
 }
 
-/* ===== KẾT QUẢ ===== */
+.btn:hover{
+    transform:translateY(-2px);
+}
 
-#resultScreen{
+.btn:active{
+    transform:scale(0.98);
+}
+
+/* =========================
+   MÀN HÌNH KẾT QUẢ
+========================= */
+
+#result{
     display:none;
     text-align:center;
 }
 
 .result-title{
     font-size:32px;
-    color:#6a1b9a;
-    font-weight:bold;
+    color:#e65100;
+    margin-bottom:15px;
 }
 
 .score-circle{
@@ -254,18 +233,18 @@ h1{
     height:190px;
     margin:20px auto;
     border-radius:50%;
-    background:linear-gradient(135deg,#ffca28,#ff8f00);
+    background:linear-gradient(135deg,#ffca28,#ff9800);
     display:flex;
     flex-direction:column;
-    align-items:center;
     justify-content:center;
+    align-items:center;
     color:white;
-    box-shadow:0 0 30px rgba(255,152,0,.55);
-    animation:zoom .7s;
+    box-shadow:0 0 30px rgba(255,152,0,0.6);
+    animation:zoomIn 0.8s;
 }
 
-.score{
-    font-size:48px;
+.score-number{
+    font-size:52px;
     font-weight:bold;
 }
 
@@ -273,81 +252,93 @@ h1{
     font-size:18px;
 }
 
-.result-stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-    margin:15px 0;
-}
-
-.stat{
-    padding:13px 5px;
-    background:#f5f5f5;
-    border-radius:15px;
-    font-weight:bold;
-}
-
 .rank{
-    font-size:29px;
-    color:#e65100;
+    font-size:28px;
     font-weight:bold;
-    margin:15px 0;
+    color:#6a1b9a;
+    margin:15px;
 }
 
 .stars{
     font-size:38px;
-    letter-spacing:4px;
+    letter-spacing:5px;
 }
 
 .comment{
-    margin:15px 0;
+    background:#f3e5f5;
     padding:15px;
-    background:#e8f5e9;
     border-radius:17px;
     font-size:18px;
     line-height:1.5;
+    margin:15px 0;
 }
 
-.play-again{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:16px;
-    background:linear-gradient(135deg,#ff9800,#f57c00);
-    color:white;
-    font-size:20px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* ===== PHÁO HOA ===== */
+/* =========================
+   PHÁO HOA
+========================= */
 
 #confetti{
     position:fixed;
-    inset:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
     pointer-events:none;
+    z-index:9999;
     overflow:hidden;
-    z-index:999;
 }
 
 .confetti{
     position:absolute;
-    top:-20px;
     width:10px;
     height:16px;
+    top:-20px;
     animation:fall 4s linear forwards;
 }
 
-/* ===== ANIMATION ===== */
+/* =========================
+   ANIMATION
+========================= */
 
 @keyframes bounce{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-8px);}
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
 }
 
-@keyframes zoom{
+@keyframes correctPop{
+    0%{
+        transform:scale(0.9);
+    }
+    50%{
+        transform:scale(1.04);
+    }
+    100%{
+        transform:scale(1);
+    }
+}
+
+@keyframes shake{
+    0%,100%{
+        transform:translateX(0);
+    }
+    25%{
+        transform:translateX(-8px);
+    }
+    50%{
+        transform:translateX(8px);
+    }
+    75%{
+        transform:translateX(-5px);
+    }
+}
+
+@keyframes zoomIn{
     from{
-        transform:scale(.3);
+        transform:scale(0);
         opacity:0;
     }
     to{
@@ -358,7 +349,7 @@ h1{
 
 @keyframes fall{
     0%{
-        transform:translateY(0) rotate(0);
+        transform:translateY(0) rotate(0deg);
         opacity:1;
     }
     100%{
@@ -367,62 +358,48 @@ h1{
     }
 }
 
-@keyframes shake{
-    0%,100%{transform:translateX(0);}
-    25%{transform:translateX(-8px);}
-    50%{transform:translateX(8px);}
-    75%{transform:translateX(-5px);}
-}
-
-/* ===== ĐIỆN THOẠI ===== */
+/* =========================
+   ĐIỆN THOẠI
+========================= */
 
 @media(max-width:600px){
 
     .container{
-        padding:15px;
+        width:96%;
         margin:8px auto;
-    }
-
-    h1{
-        font-size:27px;
+        padding:15px;
+        border-radius:20px;
     }
 
     .logo{
         font-size:48px;
     }
 
-    .table-buttons{
-        grid-template-columns:repeat(3,1fr);
+    h1{
+        font-size:27px;
     }
 
-    .all-btn{
-        grid-column:span 3;
-    }
-
-    .game-info{
-        grid-template-columns:repeat(2,1fr);
+    .subtitle{
+        font-size:16px;
     }
 
     .question{
-        font-size:36px;
+        font-size:20px;
     }
 
-    .answer-area{
-        flex-direction:column;
+    .option{
+        font-size:17px;
+        padding:13px;
     }
 
-    .submit-btn{
-        width:100%;
-        padding:14px;
+    .info-box{
+        font-size:15px;
     }
 
-    #answer{
-        width:100%;
+    .result-title{
+        font-size:27px;
     }
 
-    .result-stats{
-        grid-template-columns:1fr;
-    }
 }
 
 </style>
@@ -431,205 +408,95 @@ h1{
 
 <body>
 
+<!-- =========================
+     PHÁO HOA
+========================= -->
+
 <div id="confetti"></div>
+
 
 <div class="container">
 
-<!-- =============================
-     MÀN HÌNH BẮT ĐẦU
-============================= -->
+<!-- =========================
+     PHẦN TIÊU ĐỀ
+========================= -->
 
-<div id="startScreen">
+<div class="header">
 
-    <div class="header">
+    <div class="logo">🕵️‍♂️</div>
 
-        <div class="logo">🧠⚡</div>
+    <h1>THÁM TỬ DANH TỪ</h1>
 
-        <h1>ĐẠI CA BẢNG CỬU CHƯƠNG</h1>
-
-        <div class="subtitle">
-            🎮 Luyện nhanh – Nhớ lâu – Tính thật nhanh!
-        </div>
-
-    </div>
-
-
-    <div class="instruction">
-
-        🎯 <b>Nhiệm vụ của em:</b>
-
-        Trả lời thật nhanh các phép nhân trong bảng cửu chương.
-
-        <br><br>
-
-        ❤️ Em có <b>3 mạng</b>.
-
-        <br>
-
-        ⚡ Trả lời đúng liên tiếp sẽ được tăng <b>COMBO</b>.
-
-        <br>
-
-        🏆 Cuối lượt chơi sẽ nhận danh hiệu dựa trên kết quả.
-
-    </div>
-
-
-    <div class="table-title">
-        📚 Chọn bảng cửu chương muốn luyện
-    </div>
-
-
-    <div class="table-buttons">
-
-        <button class="table-btn" onclick="startGame(2)">
-            × 2
-        </button>
-
-        <button class="table-btn" onclick="startGame(3)">
-            × 3
-        </button>
-
-        <button class="table-btn" onclick="startGame(4)">
-            × 4
-        </button>
-
-        <button class="table-btn" onclick="startGame(5)">
-            × 5
-        </button>
-
-        <button class="table-btn" onclick="startGame(6)">
-            × 6
-        </button>
-
-        <button class="table-btn" onclick="startGame(7)">
-            × 7
-        </button>
-
-        <button class="table-btn" onclick="startGame(8)">
-            × 8
-        </button>
-
-        <button class="table-btn" onclick="startGame(9)">
-            × 9
-        </button>
-
-        <button class="table-btn all-btn" onclick="startGame('all')">
-            🔥 THỬ THÁCH TẤT CẢ BẢNG 2 → 9
-        </button>
-
-    </div>
-
-
-    <div class="rules">
-
-        📝 <b>Cách chơi:</b>
-
-        <br>
-
-        1️⃣ Chọn bảng cửu chương cần luyện.
-
-        <br>
-
-        2️⃣ Nhìn phép tính và nhập đáp án.
-
-        <br>
-
-        3️⃣ Mỗi câu đúng được cộng điểm.
-
-        <br>
-
-        4️⃣ Trả lời đúng liên tiếp sẽ tạo <b>Combo 🔥</b>.
-
-        <br>
-
-        5️⃣ Sai quá 3 lần sẽ kết thúc lượt chơi.
-
-        <br>
-
-        💡 <b>Mẹo:</b> Đừng chỉ nhớ kết quả – hãy đọc thành tiếng phép tính!
-
+    <div class="subtitle">
+        🔎 Nhiệm vụ: Tìm những từ chỉ sự vật!
     </div>
 
 </div>
 
 
-<!-- =============================
-     MÀN HÌNH CHƠI
-============================= -->
+<!-- =========================
+     KIẾN THỨC GHI NHỚ
+========================= -->
 
-<div id="gameScreen">
+<div class="remember">
 
-    <div class="header">
+    💡 <b>THÁM TỬ GHI NHỚ:</b><br>
 
-        <div class="logo">🧠⚡</div>
+    Danh từ là những từ chỉ <b>sự vật</b>, như:
+    <br>
 
-        <h1>ĐẠI CA BẢNG CỬU CHƯƠNG</h1>
+    👤 <b>Người</b> &nbsp; 🐶 <b>Con vật</b> &nbsp;
+    🎒 <b>Đồ vật</b> &nbsp; 🌳 <b>Cây cối</b>
+    <br>
 
+    ⏰ <b>Thời gian</b> &nbsp; 🌧️ <b>Hiện tượng tự nhiên</b>
+
+</div>
+
+
+<!-- =========================
+     THÔNG TIN
+========================= -->
+
+<div class="info">
+
+    <div class="info-box" id="questionNumber">
+        Câu 1/20
     </div>
 
-
-    <div class="game-info">
-
-        <div class="info-box">
-            🎯 Câu<br>
-            <span id="questionCount">1</span>
-        </div>
-
-        <div class="info-box">
-            ⭐ Điểm<br>
-            <span id="gameScore">0</span>
-        </div>
-
-        <div class="info-box">
-            🔥 Combo<br>
-            <span id="combo">0</span>
-        </div>
-
-        <div class="info-box">
-            ❤️ Mạng<br>
-            <span id="lives">❤️❤️❤️</span>
-        </div>
-
+    <div class="info-box" id="score">
+        Điểm: 0
     </div>
 
-
-    <div class="progress-bg">
-
-        <div class="progress" id="timeBar"></div>
-
-    </div>
+</div>
 
 
-    <div class="question-card">
+<!-- =========================
+     THANH TIẾN TRÌNH
+========================= -->
 
-        <div class="question-label">
-            ⚡ Tính thật nhanh:
-        </div>
+<div class="progress-bg">
+
+    <div class="progress" id="progress"></div>
+
+</div>
+
+
+<!-- =========================
+     PHẦN CÂU HỎI
+========================= -->
+
+<div id="quiz">
+
+    <div class="question-box">
 
         <div class="question" id="question">
-            6 × 7 = ?
         </div>
 
     </div>
 
 
-    <div class="answer-area">
-
-        <input
-            type="number"
-            id="answer"
-            placeholder="Nhập đáp án..."
-            autocomplete="off">
-
-        <button
-            class="submit-btn"
-            onclick="submitAnswer()">
-
-            ✓ TRẢ LỜI
-
-        </button>
-
+    <div id="options">
     </div>
 
 
@@ -638,35 +505,36 @@ h1{
 
 
     <button
-        class="skip-btn"
-        onclick="skipQuestion()">
+        class="btn"
+        id="nextButton"
+        onclick="nextQuestion()"
+        style="display:none;">
 
-        ⏭️ Bỏ qua câu này
+        ➡️ Câu tiếp theo
 
     </button>
 
 </div>
 
 
-<!-- =============================
-     MÀN HÌNH KẾT QUẢ
-============================= -->
+<!-- =========================
+     KẾT QUẢ
+========================= -->
 
-<div id="resultScreen">
+<div id="result">
 
     <div class="result-title">
-        🎉 HOÀN THÀNH!
+        🎉 HOÀN THÀNH NHIỆM VỤ!
     </div>
-
 
     <div class="score-circle">
 
-        <div class="score" id="finalScore">
+        <div class="score-number" id="finalScore">
             0
         </div>
 
         <div class="score-label">
-            điểm
+            điểm / 10
         </div>
 
     </div>
@@ -680,32 +548,12 @@ h1{
     </div>
 
 
-    <div class="result-stats">
-
-        <div class="stat">
-            🎯 Đúng<br>
-            <span id="correctCount">0</span>
-        </div>
-
-        <div class="stat">
-            ❌ Sai<br>
-            <span id="wrongCount">0</span>
-        </div>
-
-        <div class="stat">
-            🔥 Combo cao nhất<br>
-            <span id="bestCombo">0</span>
-        </div>
-
-    </div>
-
-
     <div class="comment" id="comment">
     </div>
 
 
     <button
-        class="play-again"
+        class="btn"
         onclick="restartGame()">
 
         🔄 CHƠI LẠI
@@ -720,550 +568,450 @@ h1{
 
 <script>
 
-/* ==========================================
-   BIẾN TRÒ CHƠI
-========================================== */
+/* ==================================================
+   DỮ LIỆU 20 CÂU HỎI
+   CHỈ TẬP TRUNG VÀO KHÁI NIỆM DANH TỪ
+================================================== */
 
-let selectedTable = 2;
+const questions = [
+
+{
+    q:"1. Danh từ là gì?",
+    o:[
+        "Từ chỉ hoạt động, trạng thái",
+        "Từ chỉ sự vật",
+        "Từ chỉ đặc điểm",
+        "Từ chỉ tính chất"
+    ],
+    a:1
+},
+
+{
+    q:"2. Từ nào dưới đây là danh từ?",
+    o:[
+        "chạy",
+        "đẹp",
+        "bàn",
+        "nhanh"
+    ],
+    a:2
+},
+
+{
+    q:"3. Từ nào chỉ người?",
+    o:[
+        "cô giáo",
+        "cây bàng",
+        "quyển sách",
+        "con mèo"
+    ],
+    a:0
+},
+
+{
+    q:"4. Từ nào chỉ con vật?",
+    o:[
+        "chiếc bàn",
+        "con chó",
+        "bông hoa",
+        "ngôi nhà"
+    ],
+    a:1
+},
+
+{
+    q:"5. Từ nào chỉ đồ vật?",
+    o:[
+        "con gà",
+        "cây xoài",
+        "cái cặp",
+        "bầu trời"
+    ],
+    a:2
+},
+
+{
+    q:"6. Từ nào chỉ cây cối?",
+    o:[
+        "cây phượng",
+        "con trâu",
+        "cái bút",
+        "cô giáo"
+    ],
+    a:0
+},
+
+{
+    q:"7. Từ nào chỉ thời gian?",
+    o:[
+        "buổi sáng",
+        "con chim",
+        "chiếc xe",
+        "cây tre"
+    ],
+    a:0
+},
+
+{
+    q:"8. Từ nào chỉ hiện tượng tự nhiên?",
+    o:[
+        "mưa",
+        "bàn học",
+        "học sinh",
+        "quyển vở"
+    ],
+    a:0
+},
+
+{
+    q:"9. Dòng nào dưới đây gồm toàn danh từ?",
+    o:[
+        "cây, bàn, sách",
+        "chạy, nhảy, đi",
+        "đẹp, cao, xanh",
+        "vui, buồn, nhanh"
+    ],
+    a:0
+},
+
+{
+    q:"10. Từ nào KHÔNG phải là danh từ?",
+    o:[
+        "con mèo",
+        "bông hoa",
+        "chạy",
+        "ngôi nhà"
+    ],
+    a:2
+},
+
+{
+    q:"11. Trong câu: “Lan cầm quyển sách.” Có những danh từ nào?",
+    o:[
+        "Lan, cầm",
+        "cầm, sách",
+        "Lan, quyển sách",
+        "quyển, cầm"
+    ],
+    a:2
+},
+
+{
+    q:"12. Trong câu: “Con mèo nằm bên chiếc ghế.” Có mấy danh từ?",
+    o:[
+        "1 danh từ",
+        "2 danh từ",
+        "3 danh từ",
+        "4 danh từ"
+    ],
+    a:2
+},
+
+{
+    q:"13. Từ nào dưới đây chỉ sự vật là người?",
+    o:[
+        "học sinh",
+        "cái bàn",
+        "con cá",
+        "cây cam"
+    ],
+    a:0
+},
+
+{
+    q:"14. Từ nào dưới đây chỉ sự vật là đồ vật?",
+    o:[
+        "bác sĩ",
+        "chiếc cặp",
+        "con voi",
+        "cây bưởi"
+    ],
+    a:1
+},
+
+{
+    q:"15. Từ nào dưới đây chỉ sự vật là con vật?",
+    o:[
+        "con thỏ",
+        "cái ghế",
+        "cây dừa",
+        "cô giáo"
+    ],
+    a:0
+},
+
+{
+    q:"16. Từ nào dưới đây chỉ sự vật là cây cối?",
+    o:[
+        "quả bóng",
+        "con chim",
+        "cây xoài",
+        "người bạn"
+    ],
+    a:2
+},
+
+{
+    q:"17. Từ nào dưới đây chỉ thời gian?",
+    o:[
+        "buổi tối",
+        "chiếc đồng hồ",
+        "con mèo",
+        "cây cau"
+    ],
+    a:0
+},
+
+{
+    q:"18. Từ nào dưới đây chỉ hiện tượng tự nhiên?",
+    o:[
+        "mưa",
+        "cái ô",
+        "em bé",
+        "cây xanh"
+    ],
+    a:0
+},
+
+{
+    q:"19. Trong câu: “Buổi sáng, chim hót trên cây.” Có những danh từ nào?",
+    o:[
+        "buổi sáng, chim, cây",
+        "hót, trên",
+        "buổi, hót, cây",
+        "chim, hót"
+    ],
+    a:0
+},
+
+{
+    q:"20. Nhóm từ nào gồm các danh từ chỉ sự vật?",
+    o:[
+        "cô giáo, con mèo, cây bàng, quyển vở",
+        "chạy, con mèo, đẹp, cây bàng",
+        "nhanh, vui, quyển vở, học",
+        "đỏ, xanh, cao, thấp"
+    ],
+    a:0
+}
+
+];
+
+
+/* ==================================================
+   BIẾN TRÒ CHƠI
+================================================== */
 
 let currentQuestion = 0;
 
-let score = 0;
+let correctAnswers = 0;
 
-let correct = 0;
-
-let wrong = 0;
-
-let combo = 0;
-
-let bestCombo = 0;
-
-let lives = 3;
-
-let currentAnswer = 0;
-
-let timer = null;
-
-let timeLeft = 10;
-
-let questionList = [];
+let answered = false;
 
 
-/* ==========================================
-   TẠO DANH SÁCH CÂU HỎI
-========================================== */
-
-function createQuestions(){
-
-    questionList = [];
-
-    let tables = [];
-
-    if(selectedTable === "all"){
-
-        for(let i = 2; i <= 9; i++){
-
-            tables.push(i);
-
-        }
-
-    }else{
-
-        tables.push(selectedTable);
-
-    }
-
-
-    /*
-       Mỗi bảng tạo các phép nhân
-       từ ×1 đến ×10
-    */
-
-    tables.forEach(function(table){
-
-        for(let i = 1; i <= 10; i++){
-
-            questionList.push({
-
-                a:table,
-
-                b:i,
-
-                answer:table * i
-
-            });
-
-        }
-
-    });
-
-
-    /*
-       Trộn câu hỏi
-    */
-
-    questionList.sort(
-        () => Math.random() - 0.5
-    );
-
-}
-
-
-/* ==========================================
-   BẮT ĐẦU GAME
-========================================== */
-
-function startGame(table){
-
-    selectedTable = table;
-
-    currentQuestion = 0;
-
-    score = 0;
-
-    correct = 0;
-
-    wrong = 0;
-
-    combo = 0;
-
-    bestCombo = 0;
-
-    lives = 3;
-
-
-    createQuestions();
-
-
-    document.getElementById("startScreen").style.display =
-        "none";
-
-    document.getElementById("resultScreen").style.display =
-        "none";
-
-    document.getElementById("gameScreen").style.display =
-        "block";
-
-
-    updateInfo();
-
-    showQuestion();
-
-}
-
-
-/* ==========================================
+/* ==================================================
    HIỂN THỊ CÂU HỎI
-========================================== */
+================================================== */
 
-function showQuestion(){
+function loadQuestion(){
 
-    if(currentQuestion >= questionList.length){
+    answered = false;
 
-        finishGame();
-
-        return;
-
-    }
+    const q = questions[currentQuestion];
 
 
-    const q =
-        questionList[currentQuestion];
+    document.getElementById("questionNumber").innerHTML =
+        "Câu " + (currentQuestion + 1) + "/20";
 
 
-    currentAnswer =
-        q.answer;
+    document.getElementById("score").innerHTML =
+        "Điểm: " + calculateScore();
+
+
+    document.getElementById("progress").style.width =
+        ((currentQuestion) / questions.length * 100) + "%";
 
 
     document.getElementById("question").innerHTML =
-        q.a + " × " + q.b + " = ?";
+        q.q;
 
 
-    document.getElementById("questionCount").innerHTML =
-        (currentQuestion + 1) +
-        "/" +
-        questionList.length;
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
 
 
-    document.getElementById("message").innerHTML =
-        "";
+    document.getElementById("message").innerHTML = "";
+
+    document.getElementById("message").className =
+        "message";
 
 
-    const input =
-        document.getElementById("answer");
+    document.getElementById("nextButton").style.display =
+        "none";
 
 
-    input.value = "";
+    q.o.forEach(function(optionText,index){
 
-    input.focus();
+        const option =
+            document.createElement("div");
 
+        option.className = "option";
 
-    startTimer();
-
-}
-
-
-/* ==========================================
-   ĐẾM NGƯỢC
-========================================== */
-
-function startTimer(){
-
-    clearInterval(timer);
-
-    timeLeft = 10;
+        option.innerHTML =
+            "<b>" +
+            String.fromCharCode(65 + index) +
+            ".</b> " +
+            optionText;
 
 
-    updateTimeBar();
+        option.onclick = function(){
+
+            checkAnswer(option,index);
+
+        };
 
 
-    timer = setInterval(function(){
+        optionsContainer.appendChild(option);
 
-        timeLeft--;
-
-        updateTimeBar();
-
-
-        if(timeLeft <= 0){
-
-            clearInterval(timer);
-
-            timeOut();
-
-        }
-
-    },1000);
+    });
 
 }
 
 
-/* ==========================================
-   THANH THỜI GIAN
-========================================== */
+/* ==================================================
+   KIỂM TRA ĐÁP ÁN
+================================================== */
 
-function updateTimeBar(){
+function checkAnswer(selected,index){
 
-    const bar =
-        document.getElementById("timeBar");
-
-
-    bar.style.width =
-        (timeLeft / 10 * 100) + "%";
-
-
-    if(timeLeft <= 3){
-
-        bar.style.background =
-            "#e53935";
-
-    }else{
-
-        bar.style.background =
-            "linear-gradient(90deg,#00c853,#64dd17)";
-
-    }
-
-}
-
-
-/* ==========================================
-   TRẢ LỜI
-========================================== */
-
-function submitAnswer(){
-
-    clearInterval(timer);
-
-
-    const input =
-        document.getElementById("answer");
-
-
-    const value =
-        Number(input.value);
-
-
-    if(input.value === ""){
-
-        document.getElementById("message").innerHTML =
-            "⚠️ Em hãy nhập đáp án nhé!";
-
-        document.getElementById("message").className =
-            "message wrong";
-
-        startTimer();
-
+    if(answered){
         return;
-
     }
 
-
-    if(value === currentAnswer){
-
-        correct++;
-
-        combo++;
-
-        if(combo > bestCombo){
-
-            bestCombo = combo;
-
-        }
+    answered = true;
 
 
-        /*
-           Điểm cơ bản 10
-           + điểm thời gian
-           + thưởng combo
-        */
-
-        let earned =
-            10 +
-            timeLeft +
-            combo;
+    const correct =
+        questions[currentQuestion].a;
 
 
-        score += earned;
+    const allOptions =
+        document.querySelectorAll(".option");
+
+
+    /* Đánh dấu đáp án đúng */
+
+    allOptions[correct].classList.add("correct");
+
+
+    if(index === correct){
+
+        correctAnswers++;
+
+        selected.classList.add("correct");
 
 
         document.getElementById("message").innerHTML =
-            "🎉 CHÍNH XÁC! +" +
-            earned +
-            " điểm 🔥";
+            "🎉 CHÚC MỪNG! EM TRẢ LỜI CHÍNH XÁC!";
 
 
-        document.getElementById("message").className =
-            "message correct";
+        document.getElementById("message").classList.add(
+            "correct-message"
+        );
 
 
-        createConfetti(20);
-
-
-        setTimeout(nextQuestion,900);
+        createConfetti(35);
 
 
     }else{
 
-        wrong++;
-
-        lives--;
-
-        combo = 0;
+        selected.classList.add("wrong");
 
 
         document.getElementById("message").innerHTML =
-            "❌ Chưa đúng! Đáp án là " +
-            currentAnswer;
+            "😢 RẤT TIẾC! HÃY GHI NHỚ ĐÁP ÁN ĐÚNG NHÉ!";
 
 
-        document.getElementById("message").className =
-            "message wrong";
-
-
-        document.getElementById("gameScreen").style.animation =
-            "shake .4s";
-
-
-        updateInfo();
-
-
-        if(lives <= 0){
-
-            setTimeout(finishGame,1000);
-
-        }else{
-
-            setTimeout(nextQuestion,1400);
-
-        }
+        document.getElementById("message").classList.add(
+            "wrong-message"
+        );
 
     }
+
+
+    document.getElementById("score").innerHTML =
+        "Điểm: " + calculateScore();
+
+
+    document.getElementById("nextButton").style.display =
+        "block";
 
 }
 
 
-/* ==========================================
-   HẾT THỜI GIAN
-========================================== */
+/* ==================================================
+   TÍNH ĐIỂM /10
+================================================== */
 
-function timeOut(){
+function calculateScore(){
 
-    wrong++;
-
-    lives--;
-
-    combo = 0;
-
-
-    document.getElementById("message").innerHTML =
-        "⏰ HẾT GIỜ! Đáp án là " +
-        currentAnswer;
-
-
-    document.getElementById("message").className =
-        "message wrong";
-
-
-    updateInfo();
-
-
-    if(lives <= 0){
-
-        setTimeout(finishGame,1000);
-
-    }else{
-
-        setTimeout(nextQuestion,1400);
-
-    }
+    return (
+        correctAnswers /
+        questions.length *
+        10
+    ).toFixed(1);
 
 }
 
 
-/* ==========================================
-   BỎ QUA
-========================================== */
-
-function skipQuestion(){
-
-    clearInterval(timer);
-
-
-    wrong++;
-
-    lives--;
-
-    combo = 0;
-
-
-    document.getElementById("message").innerHTML =
-        "⏭️ Bỏ qua! Đáp án là " +
-        currentAnswer;
-
-
-    document.getElementById("message").className =
-        "message wrong";
-
-
-    updateInfo();
-
-
-    if(lives <= 0){
-
-        setTimeout(finishGame,1000);
-
-    }else{
-
-        setTimeout(nextQuestion,1200);
-
-    }
-
-}
-
-
-/* ==========================================
+/* ==================================================
    CÂU TIẾP THEO
-========================================== */
+================================================== */
 
 function nextQuestion(){
 
     currentQuestion++;
 
-    updateInfo();
 
-    showQuestion();
+    if(currentQuestion < questions.length){
 
-}
+        loadQuestion();
 
+    }else{
 
-/* ==========================================
-   CẬP NHẬT THÔNG TIN
-========================================== */
-
-function updateInfo(){
-
-    document.getElementById("gameScore").innerHTML =
-        score;
-
-
-    document.getElementById("combo").innerHTML =
-        combo;
-
-
-    let hearts = "";
-
-    for(let i = 0; i < 3; i++){
-
-        if(i < lives){
-
-            hearts += "❤️";
-
-        }else{
-
-            hearts += "🖤";
-
-        }
+        finishGame();
 
     }
 
-
-    document.getElementById("lives").innerHTML =
-        hearts;
-
 }
 
 
-/* ==========================================
-   KẾT THÚC
-========================================== */
+/* ==================================================
+   KẾT THÚC TRÒ CHƠI
+================================================== */
 
 function finishGame(){
 
-    clearInterval(timer);
-
-
-    document.getElementById("gameScreen").style.display =
+    document.getElementById("quiz").style.display =
         "none";
 
 
-    document.getElementById("resultScreen").style.display =
+    document.getElementById("result").style.display =
         "block";
 
 
-    /*
-       Tính điểm theo số câu đúng.
-       Tối đa 10 điểm.
-    */
-
-    let finalScore = 0;
+    document.getElementById("progress").style.width =
+        "100%";
 
 
-    if(correct + wrong > 0){
-
-        finalScore =
-            (correct / (correct + wrong) * 10);
-
-    }
-
-
-    finalScore =
-        finalScore.toFixed(1);
+    const finalScore =
+        calculateScore();
 
 
     document.getElementById("finalScore").innerHTML =
         finalScore;
-
-
-    document.getElementById("correctCount").innerHTML =
-        correct;
-
-
-    document.getElementById("wrongCount").innerHTML =
-        wrong;
-
-
-    document.getElementById("bestCombo").innerHTML =
-        bestCombo;
 
 
     let rank = "";
@@ -1276,13 +1024,13 @@ function finishGame(){
     if(finalScore >= 9){
 
         rank =
-            "👑 SIÊU CAO THỦ";
+            "👑 THÁM TỬ KIM CƯƠNG";
 
         stars =
             "⭐⭐⭐⭐⭐";
 
         comment =
-            "Quá xuất sắc! Bảng cửu chương gần như nằm gọn trong đầu em rồi!";
+            "Xuất sắc! Em đã phá án danh từ cực kỳ thành công! Em nắm rất chắc kiến thức về danh từ.";
 
         createConfetti(180);
 
@@ -1291,13 +1039,13 @@ function finishGame(){
     else if(finalScore >= 8){
 
         rank =
-            "🥇 CAO THỦ";
+            "🥇 THÁM TỬ VÀNG";
 
         stars =
             "⭐⭐⭐⭐";
 
         comment =
-            "Rất giỏi! Em đã tính khá nhanh và chính xác. Hãy tiếp tục luyện để đạt 10 điểm!";
+            "Rất giỏi! Em đã nhận biết được hầu hết các danh từ. Hãy tiếp tục phát huy nhé!";
 
         createConfetti(120);
 
@@ -1306,41 +1054,41 @@ function finishGame(){
     else if(finalScore >= 6.5){
 
         rank =
-            "🥈 CHIẾN BINH GIỎI";
+            "🥈 THÁM TỬ BẠC";
 
         stars =
             "⭐⭐⭐";
 
         comment =
-            "Khá tốt! Em đã nắm được nhiều phép nhân. Luyện thêm một chút nữa nhé!";
+            "Khá tốt! Em đã có nền tảng tốt. Hãy luyện tập thêm để trở thành Thám tử Vàng!";
 
-        createConfetti(70);
+        createConfetti(80);
 
     }
 
     else if(finalScore >= 5){
 
         rank =
-            "🥉 CHIẾN BINH TẬP SỰ";
+            "🥉 THÁM TỬ ĐỒNG";
 
         stars =
             "⭐⭐";
 
         comment =
-            "Em đã hoàn thành thử thách. Hãy luyện lại những phép tính còn nhầm nhé!";
+            "Em đã hoàn thành nhiệm vụ! Hãy đọc lại phần ghi nhớ và thử lại nhé!";
 
     }
 
     else{
 
         rank =
-            "🌱 TÂN BINH";
+            "🔎 THÁM TỬ TẬP SỰ";
 
         stars =
             "⭐";
 
         comment =
-            "Không sao! Hãy luyện từng bảng một, đọc phép nhân thành tiếng và thử lại nhé!";
+            "Không sao! Thám tử giỏi luôn biết cố gắng. Hãy xem lại bài Danh từ rồi chơi lại nhé!";
 
     }
 
@@ -1359,25 +1107,35 @@ function finishGame(){
 }
 
 
-/* ==========================================
+/* ==================================================
    CHƠI LẠI
-========================================== */
+================================================== */
 
 function restartGame(){
 
-    document.getElementById("resultScreen").style.display =
+    currentQuestion = 0;
+
+    correctAnswers = 0;
+
+    answered = false;
+
+
+    document.getElementById("result").style.display =
         "none";
 
 
-    document.getElementById("startScreen").style.display =
+    document.getElementById("quiz").style.display =
         "block";
+
+
+    loadQuestion();
 
 }
 
 
-/* ==========================================
-   PHÁO HOA
-========================================== */
+/* ==================================================
+   HIỆU ỨNG PHÁO HOA
+================================================== */
 
 function createConfetti(number){
 
@@ -1402,7 +1160,15 @@ function createConfetti(number){
         piece.style.backgroundColor =
             "hsl(" +
             Math.random() * 360 +
-            ",90%,55%)";
+            ", 90%, 55%)";
+
+
+        piece.style.width =
+            (7 + Math.random() * 8) + "px";
+
+
+        piece.style.height =
+            (10 + Math.random() * 10) + "px";
 
 
         piece.style.animationDuration =
@@ -1410,7 +1176,7 @@ function createConfetti(number){
 
 
         piece.style.animationDelay =
-            Math.random() * .5 + "s";
+            Math.random() * 0.5 + "s";
 
 
         container.appendChild(piece);
@@ -1427,20 +1193,11 @@ function createConfetti(number){
 }
 
 
-/* ==========================================
-   NHẤN ENTER ĐỂ TRẢ LỜI
-========================================== */
+/* ==================================================
+   BẮT ĐẦU TRÒ CHƠI
+================================================== */
 
-document.getElementById("answer")
-.addEventListener("keydown",function(event){
-
-    if(event.key === "Enter"){
-
-        submitAnswer();
-
-    }
-
-});
+loadQuestion();
 
 </script>
 
